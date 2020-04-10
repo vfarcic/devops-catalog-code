@@ -5,7 +5,7 @@ variable "region" {
 
 variable "project_id" {
   type    = string
-  default = "devops-catalog"
+  default = "dc-project"
 }
 
 variable "cluster_name" {
