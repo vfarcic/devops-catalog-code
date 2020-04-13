@@ -6,6 +6,7 @@ resource "aws_eks_node_group" "primary" {
   subnet_ids      = aws_subnet.worker[*].id
   instance_types  = [var.machine_type]
   scaling_config {
+    desired_size = var.min_node_count
     max_size     = var.max_node_count
     min_size     = var.min_node_count
   }
