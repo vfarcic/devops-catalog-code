@@ -1,0 +1,7 @@
+dependencies:
+- name: mongodb
+  alias: go-demo-9-db
+  version: 7.8.4
+  repository:  https://kubernetes-charts.storage.googleapis.com
+  condition: db.enabled
+

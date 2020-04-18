@@ -1,0 +1,3 @@
+/mongodb*
+/requirements.lock
+/charts/*

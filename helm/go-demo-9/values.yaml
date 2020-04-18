@@ -1,0 +1,43 @@
+replicaCount: 1
+image:
+  repository: vfarcic/go-demo-9
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080
+  annotations: {}
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 80m
+    memory: 128Mi
+probePath: /
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  failureThreshold: 1
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+ingress:
+  host: go-demo-9.acme.com
+
+hpa:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 6
+  cpuTargetAverageUtilization: 80
+  memoryTargetAverageUtilization: 80
+
+go-demo-9-db:
+  replicaSet:
+    enabled: true
