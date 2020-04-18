@@ -1,2 +1,6 @@
 image:
   tag: 0.0.2
+ingress:
+  host: staging.go-demo-9.acme.com
+hpa:
+  minReplicas: 2
