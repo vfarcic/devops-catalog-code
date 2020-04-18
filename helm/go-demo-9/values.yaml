@@ -1,4 +1,3 @@
-replicaCount: 1
 image:
   repository: vfarcic/go-demo-9
   tag: 0.0.1

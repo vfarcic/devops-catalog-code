@@ -1,3 +1,4 @@
 /mongodb*
 /requirements.lock
 /charts/*
+/*.tgz
