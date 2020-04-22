@@ -1,0 +1,6 @@
+/.terraform
+/*.tfstate*
+/kubeconfig
+/*.tf
+access-key.json
+/creds
