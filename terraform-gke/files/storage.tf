@@ -1,7 +1,7 @@
 resource "google_storage_bucket" "state" {
   name          = "devops-catalog"
   location      = var.region
-  force_destroy = true
+  force_destroy = false
   project       = var.project_id
   storage_class = "NEARLINE"
   labels        = {
