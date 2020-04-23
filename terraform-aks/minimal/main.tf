@@ -1,3 +1,16 @@
+provider "azurerm" {
+  features {}
+}
+
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "devops-catalog-aks"
+    storage_account_name = "devopscatalog"
+    container_name       = "devopscatalog"
+    key                  = "terraform.tfstate"
+  }
+}
+
 resource "azurerm_kubernetes_cluster" "primary" {
   name                = var.cluster_name
   location            = var.region
@@ -15,9 +28,7 @@ resource "azurerm_kubernetes_cluster" "primary" {
     type = "SystemAssigned"
   }
 }
-provider "azurerm" {
-  features {}
-}
+
 resource "azurerm_storage_account" "state" {
   name                     = "devopscatalog"
   resource_group_name      = var.resource_group
