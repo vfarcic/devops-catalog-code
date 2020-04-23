@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = "${file("account.json")}"
+  project     = var.project_id
+  region      = var.region
+}
+
 terraform {
   backend "gcs" {
     bucket      = "devops-catalog"
@@ -5,6 +11,7 @@ terraform {
     credentials = "account.json"
   }
 }
+
 resource "google_container_cluster" "primary" {
   name                     = var.cluster_name
   location                 = var.region
@@ -18,6 +25,7 @@ resource "google_container_cluster" "primary" {
     owner                  = "vfarcic"
   }
 }
+
 resource "google_container_node_pool" "primary_nodes" {
   name         = var.cluster_name
   location     = var.region
@@ -43,11 +51,7 @@ resource "google_container_node_pool" "primary_nodes" {
     update = "1h"
   }
 }
-provider "google" {
-  credentials = "${file("account.json")}"
-  project     = var.project_id
-  region      = var.region
-}
+
 resource "google_storage_bucket" "state" {
   name          = "devops-catalog"
   location      = var.region

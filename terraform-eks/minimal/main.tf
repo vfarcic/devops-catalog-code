@@ -1,9 +1,14 @@
+provider "aws" {
+  region = var.region
+}
+
 terraform {
   backend "s3" {
     bucket = "devops-catalog"
     key    = "terraform/state"
   }
 }
+
 resource "aws_eks_cluster" "primary" {
   name            = "${var.cluster_name}"
   role_arn        = "${aws_iam_role.control_plane.arn}"
@@ -18,6 +23,29 @@ resource "aws_eks_cluster" "primary" {
     "aws_iam_role_policy_attachment.cluster",
     "aws_iam_role_policy_attachment.service",
   ]
+}
+
+resource "aws_eks_node_group" "primary" {
+  cluster_name    = aws_eks_cluster.primary.name
+  version         = var.k8s_version
+  node_group_name = "devops-catalog"
+  node_role_arn   = aws_iam_role.worker.arn
+  subnet_ids      = aws_subnet.worker[*].id
+  instance_types  = [var.machine_type]
+  scaling_config {
+    desired_size = var.min_node_count
+    max_size     = var.max_node_count
+    min_size     = var.min_node_count
+  }
+  depends_on = [
+    aws_iam_role_policy_attachment.worker,
+    aws_iam_role_policy_attachment.cni,
+    aws_iam_role_policy_attachment.registry,
+  ]
+  timeouts {
+    create = "15m"
+    update = "1h"
+  }
 }
 
 resource "aws_iam_role" "control_plane" {
@@ -86,29 +114,6 @@ resource "aws_subnet" "worker" {
   }
 }
 
-resource "aws_eks_node_group" "primary" {
-  cluster_name    = aws_eks_cluster.primary.name
-  version         = var.k8s_version
-  node_group_name = "devops-catalog"
-  node_role_arn   = aws_iam_role.worker.arn
-  subnet_ids      = aws_subnet.worker[*].id
-  instance_types  = [var.machine_type]
-  scaling_config {
-    desired_size = var.min_node_count
-    max_size     = var.max_node_count
-    min_size     = var.min_node_count
-  }
-  depends_on = [
-    aws_iam_role_policy_attachment.worker,
-    aws_iam_role_policy_attachment.cni,
-    aws_iam_role_policy_attachment.registry,
-  ]
-  timeouts {
-    create = "15m"
-    update = "1h"
-  }
-}
-
 resource "aws_iam_role" "worker" {
   name = "devops-catalog-worker"
   assume_role_policy = jsonencode({
@@ -159,13 +164,9 @@ resource "aws_route_table_association" "worker" {
   route_table_id = aws_route_table.worker.id
 }
 
-provider "aws" {
-  region = var.region
-}
 resource "aws_s3_bucket" "state" {
   bucket        = "devops-catalog"
   acl           = "private"
   force_destroy = false
   region        = var.region
 }
-
