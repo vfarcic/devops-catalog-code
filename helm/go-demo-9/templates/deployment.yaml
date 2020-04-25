@@ -6,8 +6,6 @@ metadata:
   name: {{ template "fullname" . }}
   labels:
     app: {{ template "fullname" . }}
-  annotations:
-    vnotify.farcic.com/notify: "true"
 spec:
   selector:
     matchLabels:
