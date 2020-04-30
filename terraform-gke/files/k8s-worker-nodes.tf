@@ -1,9 +1,9 @@
 resource "google_container_node_pool" "primary_nodes" {
-  name         = var.cluster_name
-  location     = var.region
-  cluster      = "${google_container_cluster.primary.name}"
-  version      = var.k8s_version
-  node_count   = var.min_node_count
+  name               = var.cluster_name
+  location           = var.region
+  cluster            = "${google_container_cluster.primary.name}"
+  version            = var.k8s_version
+  initial_node_count = var.min_node_count
   node_config {
     preemptible  = var.preemptible
     machine_type = var.machine_type
