@@ -70,10 +70,11 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_subnet" "worker" {
-  count = 3
-  availability_zone = data.aws_availability_zones.available.names[count.index]
-  cidr_block        = "10.0.${count.index}.0/24"
-  vpc_id            = aws_vpc.worker.id
+  count                   = 3
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
+  cidr_block              = "10.0.${count.index}.0/24"
+  vpc_id                  = aws_vpc.worker.id
+  map_public_ip_on_launch = true
   tags = {
     "Name"                                      = "devops-catalog"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
