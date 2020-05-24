@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = "${file("account.json")}"
+  credentials = file("account.json")
   project     = var.project_id
   region      = var.region
 }
@@ -29,7 +29,7 @@ resource "google_container_cluster" "primary" {
 resource "google_container_node_pool" "primary_nodes" {
   name               = var.cluster_name
   location           = var.region
-  cluster            = "${google_container_cluster.primary.name}"
+  cluster            = google_container_cluster.primary.name
   version            = var.k8s_version
   initial_node_count = var.min_node_count
   node_config {
