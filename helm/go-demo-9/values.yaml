@@ -37,6 +37,9 @@ hpa:
   cpuTargetAverageUtilization: 80
   memoryTargetAverageUtilization: 80
 
+istio:
+  enabled: false
+
 go-demo-9-db:
   replicaSet:
     enabled: true

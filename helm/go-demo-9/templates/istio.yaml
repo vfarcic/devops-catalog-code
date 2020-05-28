@@ -1,0 +1,46 @@
+{{- if .Values.istio.enabled }}
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  hosts:
+  - {{ .Values.ingress.host }}
+  - {{ template "fullname" . }}
+  gateways:
+  - {{ template "fullname" . }}
+  http:
+  - route:
+    - destination:
+        host: {{ template "fullname" . }}
+        port:
+          number: 80
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  host: {{ template "fullname" . }}
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - {{ .Values.ingress.host }}
+{{- end }} 
