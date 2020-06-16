@@ -36,3 +36,7 @@ variable "preemptible" {
   type    = bool
   default = true
 }
+
+variable "state_bucket" {
+  type    = string
+}

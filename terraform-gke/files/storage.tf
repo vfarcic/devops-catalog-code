@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "state" {
-  name          = "devops-catalog"
+  name          = var.state_bucket
   location      = var.region
   project       = var.project_id
   storage_class = "NEARLINE"
