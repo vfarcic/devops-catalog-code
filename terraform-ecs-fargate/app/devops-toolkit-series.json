@@ -1,0 +1,20 @@
+[
+  {
+    "name": "devops-toolkit-series",
+    "image": "vfarcic/devops-toolkit-series:2.9.1",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": { 
+        "awslogs-group" : "/ecs/devops-toolkit-series",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]

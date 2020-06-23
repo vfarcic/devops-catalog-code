@@ -1,0 +1,4 @@
+/creds
+/.terraform
+/terraform.tfstate*
+/darwin_amd64
