@@ -4,9 +4,15 @@ resource "random_string" "main" {
   upper   = false
 }
 
+data "google_billing_account" "main" {
+  display_name = "My Billing Account"
+  open         = true
+}
+
 resource "google_project" "main" {
-  name       = "devops-catalog"
-  project_id = var.project_id != "" ? var.project_id : "doc-${random_string.main.result}"
+  name            = "doc-serverless"
+  project_id      = var.project_id != "" ? var.project_id : "doc-${random_string.main.result}"
+  billing_account = var.billing_account_id != "" ? var.billing_account_id : data.google_billing_account.main.id
 }
 
 resource "google_service_account" "main" {
