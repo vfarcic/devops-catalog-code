@@ -64,10 +64,4 @@ data "google_iam_policy" "main" {
       "serviceAccount:${google_service_account.main.email}",
     ]
   }
-  binding {
-    role = "roles/cloudfunctions.invoker"
-    members = [
-      "allUsers",
-    ]
-  }
 }
