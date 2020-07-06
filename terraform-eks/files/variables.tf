@@ -31,3 +31,7 @@ variable "machine_type" {
   default = "t2.small"
 }
 
+variable "state_bucket" {
+  type    = string
+  default = "devops-catalog"
+}
