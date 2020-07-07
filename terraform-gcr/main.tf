@@ -18,10 +18,10 @@ resource "google_project" "main" {
 resource "google_project_service" "container_registry" {
   project = google_project.main.project_id
   service = "containerregistry.googleapis.com"
-  depends_on = [google_project_service.cloud_run]
 }
 
 resource "google_project_service" "cloud_run" {
   project = google_project.main.project_id
   service = "run.googleapis.com"
+  depends_on = [google_project_service.container_registry]
 }
