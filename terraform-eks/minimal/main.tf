@@ -10,18 +10,18 @@ terraform {
 }
 
 resource "aws_eks_cluster" "primary" {
-  name            = "${var.cluster_name}"
-  role_arn        = "${aws_iam_role.control_plane.arn}"
+  name            = var.cluster_name
+  role_arn        = aws_iam_role.control_plane.arn
   version         = var.k8s_version
 
   vpc_config {
-    security_group_ids = ["${aws_security_group.worker.id}"]
+    security_group_ids = [aws_security_group.worker.id]
     subnet_ids         = aws_subnet.worker[*].id
   }
 
   depends_on = [
-    "aws_iam_role_policy_attachment.cluster",
-    "aws_iam_role_policy_attachment.service",
+    aws_iam_role_policy_attachment.cluster,
+    aws_iam_role_policy_attachment.service,
   ]
 }
 
@@ -69,12 +69,12 @@ POLICY
 
 resource "aws_iam_role_policy_attachment" "cluster" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = "${aws_iam_role.control_plane.name}"
+  role       = aws_iam_role.control_plane.name
 }
 
 resource "aws_iam_role_policy_attachment" "service" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role       = "${aws_iam_role.control_plane.name}"
+  role       = aws_iam_role.control_plane.name
 }
 
 resource "aws_vpc" "worker" {
@@ -88,7 +88,7 @@ resource "aws_vpc" "worker" {
 resource "aws_security_group" "worker" {
   name        = "devops-catalog"
   description = "Cluster communication with worker nodes"
-  vpc_id      = "${aws_vpc.worker.id}"
+  vpc_id      = aws_vpc.worker.id
   egress {
     from_port   = 0
     to_port     = 0
