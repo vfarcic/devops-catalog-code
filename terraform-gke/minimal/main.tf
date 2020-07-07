@@ -6,7 +6,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket      = "doc-20200707120652"
+    bucket      = "devops-catalog"
     prefix      = "terraform/state"
     credentials = "account.json"
   }
