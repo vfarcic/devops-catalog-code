@@ -7,7 +7,9 @@ service:
   type: ClusterIP
   externalPort: 80
   internalPort: 8080
-  annotations: {}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
 resources:
   limits:
     cpu: 100m
