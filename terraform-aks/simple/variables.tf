@@ -30,5 +30,5 @@ variable "max_node_count" {
 
 variable "machine_type" {
   type    = string
-  default = "Standard_D1_v2"
+  default = "Standard_D2_v2"
 }
