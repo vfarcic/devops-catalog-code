@@ -5,7 +5,6 @@ variable "region" {
 
 variable "resource_group" {
   type    = string
-  default = "devops-catalog-aks"
 }
 
 variable "cluster_name" {
