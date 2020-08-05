@@ -30,10 +30,18 @@ resource "azurerm_kubernetes_cluster" "primary" {
   }
 }
 
-resource "azurerm_storage_account" "state" {
-  name                     = "devopscatalog"
-  resource_group_name      = azurerm_resource_group.main.name
-  location                 = var.region
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+resource "null_resource" "kubeconfig" {
+  provisioner "local-exec" {
+    command = "aks get-credentials --name ${var.cluster_name} --resource-group ${terraform output resource_group} --file $PWD/kubeconfig"
+  }
+  depends_on = [
+    azurerm_kubernetes_cluster.primary,
+  ]
+}
+
+resource "null_resource" "destroy-kubeconfig" {
+  provisioner "local-exec" {
+    when    = destroy
+    command = "rm -f $PWD/kubeconfig"
+  }
 }
