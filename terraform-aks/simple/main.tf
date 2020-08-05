@@ -32,7 +32,7 @@ resource "azurerm_kubernetes_cluster" "primary" {
 
 resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
-    command = "aks get-credentials --name ${var.cluster_name} --resource-group ${var.resource_group} --file $PWD/kubeconfig"
+    command = "az aks get-credentials --name ${var.cluster_name} --resource-group ${var.resource_group} --file $PWD/kubeconfig"
   }
   depends_on = [
     azurerm_kubernetes_cluster.primary,
