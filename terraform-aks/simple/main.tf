@@ -10,7 +10,7 @@ resource "azurerm_resource_group" "main" {
 resource "azurerm_kubernetes_cluster" "primary" {
   name                = var.cluster_name
   location            = var.region
-  resource_group_name = azurerm_resource_group.primary.name
+  resource_group_name = azurerm_resource_group.main.name
   dns_prefix          = var.dns_prefix
   default_node_pool {
     name                = var.cluster_name
@@ -26,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "primary" {
 
 resource "azurerm_storage_account" "state" {
   name                     = "devopscatalog"
-  resource_group_name      = azurerm_resource_group.primary.name
+  resource_group_name      = azurerm_resource_group.main.name
   location                 = var.region
   account_tier             = "Standard"
   account_replication_type = "LRS"
