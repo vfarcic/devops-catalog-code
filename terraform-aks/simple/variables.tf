@@ -5,6 +5,7 @@ variable "region" {
 
 variable "resource_group" {
   type    = string
+  default = ""
 }
 
 variable "cluster_name" {
