@@ -1,5 +1,7 @@
 ingress:
   enabled: true
+service:
+  type: LoadBalancer
 datasources:
   datasources.yaml:
     apiVersion: 1
