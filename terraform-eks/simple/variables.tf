@@ -22,3 +22,8 @@ variable "machine_type" {
   type    = string
   default = "t2.medium"
 }
+
+# variable "ingress_nginx" {
+#   type    = bool
+#   default = false
+# }

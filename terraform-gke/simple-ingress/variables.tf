@@ -40,9 +40,5 @@ variable "billing_account_id" {
 
 variable "k8s_version" {
   type = string
-}
-
-variable "ingress_nginx" {
-  type    = bool
-  default = false
+  type = ""
 }
