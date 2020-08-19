@@ -32,3 +32,8 @@ variable "machine_type" {
   type    = string
   default = "Standard_D2_v2"
 }
+
+variable "ingress_nginx" {
+  type    = bool
+  default = false
+}
