@@ -7,5 +7,5 @@ output "region" {
 }
 
 output "resource_group" {
-  value = var.resource_group
+  value = azurerm_resource_group.main.name
 }
