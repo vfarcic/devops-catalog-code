@@ -39,6 +39,6 @@ variable "billing_account_id" {
 }
 
 variable "k8s_version" {
-  type = string
-  type = ""
+  type    = string
+  default = ""
 }
