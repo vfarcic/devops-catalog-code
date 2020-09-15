@@ -49,7 +49,7 @@ resource "null_resource" "destroy-kubeconfig" {
 resource "null_resource" "ingress-nginx" {
   count = var.ingress_nginx == true ? 1 : 0
   provisioner "local-exec" {
-    command = "KUBECONFIG=$PWD/kubeconfig kubectl apply --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml"
+    command = "KUBECONFIG=$PWD/kubeconfig kubectl apply --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.35.0/deploy/static/provider/cloud/deploy.yaml"
   }
   depends_on = [
     null_resource.kubeconfig,
