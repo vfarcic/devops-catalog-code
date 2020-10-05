@@ -170,5 +170,5 @@ resource "aws_s3_bucket" "state" {
   bucket        = var.state_bucket
   acl           = "private"
   force_destroy = false
-  region        = var.region
+  # region        = var.region
 }
