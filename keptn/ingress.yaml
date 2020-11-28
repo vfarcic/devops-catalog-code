@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: keptn
+  labels:
+    app: keptn
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: api-gateway-nginx
+          servicePort: 80
+    host: keptn.acme.com
+
