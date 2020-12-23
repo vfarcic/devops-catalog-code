@@ -37,3 +37,9 @@ variable "ingress_nginx" {
   type    = bool
   default = false
 }
+
+variable "istio" {
+  type    = bool
+  default = false
+}
+
