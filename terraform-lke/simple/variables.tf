@@ -7,6 +7,6 @@ variable "k8s_version" {
   type = string
 }
 
-variable "token" {
+variable "linode_token" {
   type = string
 }
