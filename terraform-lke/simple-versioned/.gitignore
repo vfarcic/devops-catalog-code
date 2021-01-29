@@ -1,4 +1,4 @@
-/.terraform*
+/.terraform
 /*.tfstate*
 /kubeconfig.yaml
 /creds

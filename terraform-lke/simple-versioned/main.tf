@@ -25,6 +25,9 @@ resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
     command = "echo ${linode_lke_cluster.primary.kubeconfig} | base64 --decode | tee kubeconfig"
   }
+  triggers = {
+    always_run = "${timestamp()}"
+  }
   depends_on = [
     linode_lke_cluster.primary,
   ]

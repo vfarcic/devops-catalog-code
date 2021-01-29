@@ -3,5 +3,3 @@
 /kubeconfig
 access-key.json
 /creds
-.terraform*
-

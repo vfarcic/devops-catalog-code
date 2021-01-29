@@ -1,0 +1,42 @@
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: test
+spec:
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: test
+          image: alpine
+          command: 
+          - sleep
+          args:
+          - "3600"
+          volumeMounts:
+            - mountPath: /tmp
+              name: test
+      volumes:
+        - name: test
+          persistentVolumeClaim:
+            claimName: test
