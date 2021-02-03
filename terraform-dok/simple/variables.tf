@@ -1,10 +1,11 @@
-variable "pool_type" {
+variable "pool_size" {
   type    = string
-  default = "g6-standard-2"
+  default = "s-1vcpu-2gb"
 }
 
 variable "k8s_version" {
-  type = string
+  type    = string
+  default = "1.20.2-do.0"
 }
 
 variable "token" {
