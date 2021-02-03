@@ -1,6 +1,6 @@
 variable "pool_size" {
   type    = string
-  default = "s-1vcpu-2gb"
+  default = "s-2vcpu-4gb"
 }
 
 variable "k8s_version" {
