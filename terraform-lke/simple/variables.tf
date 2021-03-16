@@ -16,3 +16,8 @@ variable "ingress_nginx" {
   default = false
 }
 
+variable "istio" {
+  type    = bool
+  default = false
+}
+

@@ -47,3 +47,13 @@ resource "null_resource" "ingress-nginx" {
   ]
 }
 
+resource "null_resource" "istio" {
+  count = var.istio == true ? 1 : 0
+  provisioner "local-exec" {
+    command = "KUBECONFIG=$PWD/kubeconfig istioctl install --skip-confirmation"
+  }
+  depends_on = [
+    null_resource.kubeconfig,
+  ]
+}
+

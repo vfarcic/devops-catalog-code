@@ -17,8 +17,8 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     name       = "primary"
     size       = var.pool_size
     auto_scale = true
-    min_nodes  = 1
-    max_nodes  = 6
+    min_nodes  = var.min_nodes
+    max_nodes  = var.max_nodes
   }
 }
 
