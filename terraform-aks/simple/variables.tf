@@ -45,6 +45,6 @@ variable "istio" {
 
 variable "k8s_version" {
   type    = string
-  default = "1.19.6"
+  default = "1.19.9"
 }
 
