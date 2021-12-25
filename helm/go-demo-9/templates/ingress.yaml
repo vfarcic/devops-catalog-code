@@ -2,7 +2,7 @@
 {{- else }}
 ---
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "fullname" . }}
@@ -13,7 +13,11 @@ spec:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
-      - backend:
-          serviceName: {{ template "fullname" . }}
-          servicePort: {{ .Values.service.externalPort }}
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ template "fullname" . }}
+            port:
+              number: {{ .Values.service.externalPort }}
 {{- end }}
