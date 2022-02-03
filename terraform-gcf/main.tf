@@ -40,6 +40,11 @@ resource "google_project_service" "cloudfunctions" {
   service = "cloudfunctions.googleapis.com"
 }
 
+resource "google_project_service" "cloudbuild" {
+  project = google_project.main.project_id
+  service = "cloudbuild.googleapis.com"
+}
+
 resource "google_project_service" "storage-api" {
   project = google_project.main.project_id
   service = "storage-api.googleapis.com"
