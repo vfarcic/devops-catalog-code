@@ -42,6 +42,7 @@ resource "google_container_node_pool" "primary_nodes" {
   node_config {
     preemptible  = var.preemptible
     machine_type = var.machine_type
+    image_type = var.image_type
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]

@@ -28,6 +28,11 @@ variable "machine_type" {
   default = "e2-standard-2"
 }
 
+variable "image_type" {
+  type = string
+  default = "cos_containerd"
+}
+
 variable "preemptible" {
   type    = bool
   default = true
