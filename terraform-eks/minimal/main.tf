@@ -168,7 +168,11 @@ resource "aws_route_table_association" "worker" {
 
 resource "aws_s3_bucket" "state" {
   bucket        = var.state_bucket
-  acl           = "private"
   force_destroy = false
   # region        = var.region
+}
+
+resource "aws_s3_bucket_acl" "acl" {
+  bucket    = aws_s3_bucket.state.id
+  acl       = "private"
 }
