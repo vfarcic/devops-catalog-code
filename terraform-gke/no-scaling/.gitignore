@@ -1,0 +1,5 @@
+/.terraform*
+/*.tfstate*
+/kubeconfig
+/account.json
+/.terraform*
