@@ -51,3 +51,8 @@ variable "ingress_nginx" {
   type    = bool
   default = false
 }
+
+variable "ingress_traefik" {
+  type    = bool
+  default = false
+}

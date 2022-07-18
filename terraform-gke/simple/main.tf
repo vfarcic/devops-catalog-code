@@ -85,3 +85,21 @@ resource "null_resource" "ingress-nginx" {
     null_resource.kubeconfig,
   ]
 }
+
+provider "helm" {
+  kubernetes {
+    config_path = "kubeconfig"
+  }
+}
+
+resource "helm_release" "ingress-traefik" {
+  count = var.ingress_traefik == true ? 1 : 0
+  name = "nginx-ingress-controller"
+  repository = "https://helm.traefik.io/traefik"
+  chart = "traefik"
+  namespace = "traefik"
+  create_namespace = true
+  depends_on = [
+    null_resource.kubeconfig,
+  ]
+}
