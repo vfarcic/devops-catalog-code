@@ -94,7 +94,7 @@ provider "helm" {
 
 resource "helm_release" "ingress-traefik" {
   count = var.ingress_traefik == true ? 1 : 0
-  name = "nginx-ingress-controller"
+  name = "traefik"
   repository = "https://helm.traefik.io/traefik"
   chart = "traefik"
   namespace = "traefik"
