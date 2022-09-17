@@ -1,3 +1,8 @@
+variable "name" {
+  type    = string
+  default = "devops-toolkit"
+}
+
 variable "pool_size" {
   type    = string
   default = "s-2vcpu-4gb"
@@ -5,7 +10,7 @@ variable "pool_size" {
 
 variable "k8s_version" {
   type    = string
-  default = "1.21.5-do.0"
+  default = "1.24.4-do.0"
 }
 
 variable "ingress_nginx" {
@@ -22,5 +27,3 @@ variable "max_nodes" {
   type    = number
   default = 6
 }
-
-
