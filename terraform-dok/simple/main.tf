@@ -2,7 +2,7 @@ terraform {
   required_providers {
     digitalocean = {
       source = "digitalocean/digitalocean"
-      version = "2.22.2"
+      version = "2.22.3"
     }
   }
 }
@@ -10,7 +10,7 @@ terraform {
 provider "digitalocean" {}
 
 resource "digitalocean_kubernetes_cluster" "primary" {
-  name   = "devops-toolkit"
+  name   = var.name
   region = "nyc1"
   version = var.k8s_version
   node_pool {
@@ -25,7 +25,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 resource "null_resource" "ingress-nginx" {
   count = var.ingress_nginx == true ? 1 : 0
   provisioner "local-exec" {
-    command = "KUBECONFIG=$PWD/kubeconfig.yaml kubectl apply --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.35.0/deploy/static/provider/cloud/deploy.yaml"
+    command = "KUBECONFIG=$PWD/kubeconfig.yaml kubectl apply --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/cloud/deploy.yaml"
   }
   depends_on = [
     null_resource.kubeconfig,

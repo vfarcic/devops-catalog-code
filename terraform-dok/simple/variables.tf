@@ -1,3 +1,8 @@
+variable "name" {
+  type    = string
+  default = "devops-toolkit"
+}
+
 variable "pool_size" {
   type    = string
   default = "s-2vcpu-4gb"
@@ -22,5 +27,3 @@ variable "max_nodes" {
   type    = number
   default = 6
 }
-
-
