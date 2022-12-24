@@ -62,7 +62,7 @@ resource "google_container_node_pool" "primary_nodes" {
 
 resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
-    command = "KUBECONFIG=$PWD/kubeconfig gcloud container clusters get-credentials ${var.cluster_name} --project ${google_project.main.project_id} --region ${var.region}"
+    command = "USE_GKE_GCLOUD_AUTH_PLUGIN=True KUBECONFIG=$PWD/kubeconfig gcloud container clusters get-credentials ${var.cluster_name} --project ${google_project.main.project_id} --region ${var.region}"
   }
   depends_on = [
     google_container_cluster.primary,

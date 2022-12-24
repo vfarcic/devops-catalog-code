@@ -3,3 +3,4 @@
 /kubeconfig
 /account.json
 /.terraform*
+/gke_gcloud_auth_plugin_cache
