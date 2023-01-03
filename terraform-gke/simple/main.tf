@@ -72,7 +72,7 @@ resource "null_resource" "kubeconfig" {
 resource "null_resource" "destroy-kubeconfig" {
   provisioner "local-exec" {
     when    = destroy
-    command = "rm -f $PWD/kubeconfig"
+    command = "rm -f $PWD/kubeconfig $PWD/gke_gcloud_auth_plugin_cache"
   }
 }
 

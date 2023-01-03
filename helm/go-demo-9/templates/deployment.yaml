@@ -25,7 +25,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: DB
-          value: {{ template "fullname" . }}-db
+          value: {{ template "name" . }}-mongodb
         - name: VERSION
           value: {{ .Values.image.tag }}
         ports:
