@@ -13,7 +13,7 @@ spec:
       containers:
       - image: vfarcic/devops-toolkit-series
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           limits:
             memory: 256Mi
