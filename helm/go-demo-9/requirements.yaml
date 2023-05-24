@@ -1,6 +1,6 @@
 dependencies:
 - name: mongodb
   alias: go-demo-9-db
-  version: 13.14.1
+  version: 13.15.0
   repository: https://charts.bitnami.com/bitnami
 
