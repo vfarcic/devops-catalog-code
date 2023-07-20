@@ -1,6 +1,7 @@
 server:
   ingress:
     enabled: true
+    ingressClassName: nginx
   extraArgs:
   - --insecure
 installCRDs: false
