@@ -3,7 +3,7 @@ kind: ClusterConfig
 metadata:
   name: devops-catalog
   region: eu-west-1
-  version: "1.19"
+  version: "1.25"
 managedNodeGroups:
 - name: primary
   instanceType: t2.medium
