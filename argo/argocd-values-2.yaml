@@ -1,6 +1,7 @@
 server:
   ingress:
     enabled: true
-  extraArgs:
-  - --insecure
+configs:
+  params:
+    "server.insecure": true
 installCRDs: false
