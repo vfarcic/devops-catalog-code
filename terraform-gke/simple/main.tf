@@ -53,6 +53,7 @@ resource "google_container_node_pool" "primary_nodes" {
   }
   management {
     auto_upgrade = false
+    auto_repair   = true
   }
   timeouts {
     create = "15m"
